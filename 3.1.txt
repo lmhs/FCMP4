@@ -1,0 +1,2 @@
+> db.restaurants.find({$and: [{cuisine: "Chinese"},{borough : "Queens"}]}).count();
+728

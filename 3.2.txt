@@ -1,0 +1,2 @@
+> db.restaurants.aggregate([{$unwind: "$grades"}, {$project: {score: "$grades.score"}}, {$sort: {score : -1}}, {$limit: 1}, {$project: {score: 0}}]);
+{ "_id" : ObjectId("5a5d298faccf8eb086e20e64") }

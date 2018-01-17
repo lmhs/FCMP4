@@ -1,0 +1,3 @@
+╰─$ mongoimport --db frontcamp --collection restaurants --file Downloads/restaurants.json
+2018-01-16T01:22:07.094+0300  connected to: localhost
+2018-01-16T01:22:08.959+0300  imported 25359 documents

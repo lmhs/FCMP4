@@ -1,0 +1,61 @@
+> db.restaurants.createIndex({ "grades.8.score": 1 })
+{
+  "createdCollectionAutomatically" : false,
+  "numIndexesBefore" : 1,
+  "numIndexesAfter" : 2,
+  "ok" : 1
+}
+> db.restaurants.find({"grades.8.score": {$lt: 7}}, {name: 1, _id: 0}).explain();
+{
+  "queryPlanner" : {
+    "plannerVersion" : 1,
+    "namespace" : "frontcamp.restaurants",
+    "indexFilterSet" : false,
+    "parsedQuery" : {
+      "grades.8.score" : {
+        "$lt" : 7
+      }
+    },
+    "winningPlan" : {
+      "stage" : "PROJECTION",
+      "transformBy" : {
+        "name" : 1,
+        "_id" : 0
+      },
+      "inputStage" : {
+        "stage" : "FETCH",
+        "inputStage" : {
+          "stage" : "IXSCAN",
+          "keyPattern" : {
+            "grades.8.score" : 1
+          },
+          "indexName" : "grades.8.score_1",
+          "isMultiKey" : true,
+          "multiKeyPaths" : {
+            "grades.8.score" : [
+              "grades"
+            ]
+          },
+          "isUnique" : false,
+          "isSparse" : false,
+          "isPartial" : false,
+          "indexVersion" : 2,
+          "direction" : "forward",
+          "indexBounds" : {
+            "grades.8.score" : [
+              "[-inf.0, 7.0)"
+            ]
+          }
+        }
+      }
+    },
+    "rejectedPlans" : [ ]
+  },
+  "serverInfo" : {
+    "host" : "maksims-mbp",
+    "port" : 27017,
+    "version" : "3.6.2",
+    "gitVersion" : "489d177dbd0f0420a8ca04d39fd78d0a2c539420"
+  },
+  "ok" : 1
+}

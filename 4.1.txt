@@ -1,0 +1,52 @@
+> db.restaurants.createIndex({ name: 1 });
+{
+  "createdCollectionAutomatically" : false,
+  "numIndexesBefore" : 1,
+  "numIndexesAfter" : 2,
+  "ok" : 1
+}
+> db.restaurants.find({ name: "Glorious Food" }).explain();
+{
+  "queryPlanner" : {
+    "plannerVersion" : 1,
+    "namespace" : "frontcamp.restaurants",
+    "indexFilterSet" : false,
+    "parsedQuery" : {
+      "name" : {
+        "$eq" : "Glorious Food"
+      }
+    },
+    "winningPlan" : {
+      "stage" : "FETCH",
+      "inputStage" : {
+        "stage" : "IXSCAN",
+        "keyPattern" : {
+          "name" : 1
+        },
+        "indexName" : "name_1",
+        "isMultiKey" : false,
+        "multiKeyPaths" : {
+          "name" : [ ]
+        },
+        "isUnique" : false,
+        "isSparse" : false,
+        "isPartial" : false,
+        "indexVersion" : 2,
+        "direction" : "forward",
+        "indexBounds" : {
+          "name" : [
+            "[\"Glorious Food\", \"Glorious Food\"]"
+          ]
+        }
+      }
+    },
+    "rejectedPlans" : [ ]
+  },
+  "serverInfo" : {
+    "host" : "maksims-mbp",
+    "port" : 27017,
+    "version" : "3.6.2",
+    "gitVersion" : "489d177dbd0f0420a8ca04d39fd78d0a2c539420"
+  },
+  "ok" : 1
+}
