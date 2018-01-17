@@ -1,7 +1,7 @@
 > db.restaurants.createIndex(
-...    { cuisine: 1 },
-...    { partialFilterExpression: { borough: "Staten Island" } }
-... );
+   { cuisine: 1 },
+   { partialFilterExpression: { borough: "Staten Island" } }
+);
 {
   "createdCollectionAutomatically" : false,
   "numIndexesBefore" : 2,
