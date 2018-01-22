@@ -11,11 +11,12 @@
   {
     "v" : 2,
     "key" : {
+      "borough" : 1,
       "name" : 1
     },
-    "name" : "name_1",
+    "name" : "name",
     "ns" : "frontcamp.restaurants"
   }
 ]
-> db.restaurants.dropIndex("name_1");
+> db.restaurants.dropIndex("name");
 { "nIndexesWas" : 2, "ok" : 1 }

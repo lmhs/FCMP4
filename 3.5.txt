@@ -25,5 +25,11 @@
         { id : "$_id.id" , borough: "$_id.borough", _id: 0 }
     }
 ]);
+
+OR
+
+> db.restaurants.find({ cuisine: "Seafood", grades: { $elemMatch: { grade: "B", date: { $gte: ISODate("2014-02-01T00:00:00.000Z"), $lte: ISODate("2014-03-01T23:59:59.999Z") } } } }, { borough: 1 })
+
+
 { "id" : ObjectId("5a5d2990accf8eb086e244e7"), "borough" : "Manhattan" }
 { "id" : ObjectId("5a5d2990accf8eb086e24270"), "borough" : "Bronx" }
