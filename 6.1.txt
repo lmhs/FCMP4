@@ -1,0 +1,6 @@
+$ mongoimport --db frontcamp --type csv --headerline --collection airlines --file Downloads/airlines.csv
+2018-01-22T22:04:57.952+0300  connected to: localhost
+2018-01-22T22:05:00.945+0300  [##########..............] frontcamp.airlines 8.60MB/19.1MB (45.1%)
+2018-01-22T22:05:03.940+0300  [#####################...] frontcamp.airlines 17.1MB/19.1MB (89.8%)
+2018-01-22T22:05:04.640+0300  [########################] frontcamp.airlines 19.1MB/19.1MB (100.0%)
+2018-01-22T22:05:04.640+0300  imported 186648 documents
