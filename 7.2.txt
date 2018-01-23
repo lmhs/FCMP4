@@ -1,0 +1,29 @@
+> db.airlines.aggregate([
+  { $match:
+    { destCountry:
+      { $ne: "United States" }
+    }
+  },
+  { $group:
+    {
+      _id: "$destCity",
+      avgPassengers: {
+        $avg: "$passengers"
+      }
+    }
+  },
+  { $sort:
+    { avgPassengers: -1 }
+  },
+  { $limit: 3 },
+  { $project:
+    {
+      city: "$_id",
+      avgPassengers: "$avgPassengers",
+      _id: 0
+    }
+  }
+]);
+{ "city" : "Abu Dhabi, United Arab Emirates", "avgPassengers" : 8052.380952380952 }
+{ "city" : "Dubai, United Arab Emirates", "avgPassengers" : 7176.596638655462 }
+{ "city" : "Guangzhou, China", "avgPassengers" : 7103.333333333333 }

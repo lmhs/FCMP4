@@ -1,0 +1,21 @@
+> db.airlines.aggregate([
+  { $group:
+    {
+      _id: {
+        class: "$class"
+      },
+      total: { $sum: 1 }
+    }
+  },
+  { $project:
+    {
+      class: "$_id.class",
+      total: "$total",
+      _id: 0
+    }
+  }
+]);
+{ "class" : "F", "total" : 140343 }
+{ "class" : "L", "total" : 23123 }
+{ "class" : "P", "total" : 5683 }
+{ "class" : "G", "total" : 17499 }

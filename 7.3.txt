@@ -1,0 +1,19 @@
+> db.airlines.aggregate([
+  { $match:
+    { destCountry: "Latvia" }
+  },
+  { $group:
+    {
+      _id: "$destCountry",
+      carriers: { $addToSet: "$carrier" }
+    }
+  }
+]).pretty();
+{
+  "_id" : "Latvia",
+  "carriers" : [
+    "Blue Jet SP Z o o",
+    "Uzbekistan Airways",
+    "JetClub AG"
+  ]
+}

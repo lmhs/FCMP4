@@ -1,0 +1,86 @@
+> db.airlines.aggregate([
+  { $match:
+    {
+      originCountry: "United States"
+    }
+  },
+  { $group:
+    {
+      _id: "$originState",
+      items: { $push: "$$ROOT" }
+    }
+  },
+  { $sort:
+    { _id: 1 }
+  },
+  { $limit: 5 },
+  { $unwind: "$items" },
+  { $group:
+    {
+      _id: {
+        state: "$_id",
+        city: "$items.originCity"
+      },
+      passengers: { $sum: "$items.passengers" }
+    }
+  },
+  { $sort:
+    { passengers: -1 }
+  },
+  { $group:
+    {
+      _id: "$_id.state",
+      city: {
+        $first: "$_id.city"
+      },
+      passengers: {
+        $first: "$passengers"
+      }
+    }
+  },
+  { $project:
+    {
+      totalPassengers: "$passengers",
+      location: {
+        city: "$city",
+        state: "$_id"
+      },
+      _id: 0
+    }
+  }
+]).pretty();
+{
+  "totalPassengers" : 760120,
+  "location" : {
+    "city" : "Birmingham, AL",
+    "state" : "Alabama"
+  }
+}
+{
+  "totalPassengers" : 1472404,
+  "location" : {
+    "city" : "Anchorage, AK",
+    "state" : "Alaska"
+  }
+}
+{
+  "totalPassengers" : 13152753,
+  "location" : {
+    "city" : "Phoenix, AZ",
+    "state" : "Arizona"
+  }
+}
+{
+  "totalPassengers" : 571452,
+  "location" : {
+    "city" : "Little Rock, AR",
+    "state" : "Arkansas"
+  }
+}
+{
+  "totalPassengers" : 23701556,
+  "location" : {
+    "city" : "Los Angeles, CA",
+    "state" : "California"
+  }
+}
