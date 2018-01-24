@@ -1,0 +1,33 @@
+> db.enron.aggregate([
+  { $unwind: "$headers.To"},
+  { $group:
+    {
+      _id: {
+        from: "$headers.From",
+        to: "$headers.To"
+      },
+      messages: { $addToSet: "$headers.Message-ID" }
+    }
+  },
+  { $project:
+    {
+      tosCount: { $size: "$messages" }
+    }
+  },
+  { $sort: { tosCount: -1 } },
+  { $limit: 1 },
+  { $project:
+    {
+      _id: 0,
+      from: "$_id.from",
+      to: "$_id.to",
+      messages: "$tosCount"
+    }
+  }
+],
+{ allowDiskUse: true}).pretty();
+{
+  "from" : "susan.mara@enron.com",
+  "to" : "jeff.dasovich@enron.com",
+  "messages" : 750
+}
