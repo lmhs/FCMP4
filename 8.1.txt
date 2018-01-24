@@ -1,0 +1,10 @@
+$ mongorestore -d frontcamp -c enron ~/Downloads/enron/messages.bson
+2018-01-24T03:02:08.523+0300  checking for collection data in /Users/lmhs/Downloads/enron/messages.bson
+2018-01-24T03:02:08.528+0300  reading metadata for frontcamp.enron from /Users/lmhs/Downloads/enron/messages.metadata.json
+2018-01-24T03:02:08.579+0300  restoring frontcamp.enron from /Users/lmhs/Downloads/enron/messages.bson
+2018-01-24T03:02:11.522+0300  [########................]  frontcamp.enron  141MB/378MB  (37.4%)
+2018-01-24T03:02:14.532+0300  [################........]  frontcamp.enron  264MB/378MB  (70.0%)
+2018-01-24T03:02:17.400+0300  [########################]  frontcamp.enron  378MB/378MB  (100.0%)
+2018-01-24T03:02:17.400+0300  no indexes to restore
+2018-01-24T03:02:17.400+0300  finished restoring frontcamp.enron (120477 documents)
+2018-01-24T03:02:17.400+0300  done
